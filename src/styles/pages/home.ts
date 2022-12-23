@@ -5,11 +5,12 @@ export const HomeContainer = styled('main', {
   width: "100%",
   maxWidth: 'calc(100vw - ((100vw - 1180px)/2))',
   marginLeft: 'auto',
-  minHeight: 656,
+  minHeight: 646,
+  marginBottom: 10,
 
 })
 
-export const Product = styled('a', {
+export const Product = styled('div', {
   background: 'linear-gradient(180deg, #1EA483 0%, #7465D4 100%)',
   borderRadius: 8,
   cursor: 'pointer',
@@ -44,6 +45,7 @@ export const Product = styled('a', {
 
     strong: {
       fontSize: '$lg',
+      color: '$gray100',
     },
 
     span: {
