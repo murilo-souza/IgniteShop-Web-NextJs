@@ -26,3 +26,6 @@
 
 <h2>Layout</h2>
 <p>To see the complet layout of the application, access the <a href="https://www.figma.com/file/c2LofJHAslHTumdIakn27H/Ignite-Shop-(Copy)?node-id=0%3A1&t=l2mtRiExnTUH2Lvv-0">Link</a></p>
+
+<h2>Video</h2>
+<p>To watch the application video, access the <a href="https://www.linkedin.com/posts/murilo-leme-de-souza_reactjs-nextjs-developer-activity-7039347499844706304-Y5Fo?utm_source=share&utm_medium=member_desktop">Link<a/>
