@@ -1,11 +1,11 @@
-import { styled } from "..";
+import { styled } from '..'
 
 export const Container = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
   justifyContent: 'center',
-  minHeight: '100vh'
+  minHeight: '100vh',
 })
 
 export const Header = styled('header', {
@@ -18,8 +18,7 @@ export const Header = styled('header', {
   flexDirection: 'row',
 
   alignItems: 'center',
-  justifyContent: 'space-between'
-
+  justifyContent: 'space-between',
 })
 
 export const Button = styled('button', {
@@ -33,16 +32,17 @@ export const Button = styled('button', {
 
   '&:disabled': {
     opacity: 0.6,
-    cursor: 'not-allowed'
+    cursor: 'not-allowed',
   },
 
   '&:not(:disabled):hover': {
+    cursor: 'pointer',
     svg: {
       color: '$gray300',
-    }
+    },
   },
-  
+
   svg: {
     color: '$gray400',
-  }
+  },
 })
