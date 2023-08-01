@@ -12,17 +12,20 @@ export const Container = styled('aside', {
 
   backgroundColor: '$gray800',
 
-  div: {
+  main: {
     display: 'flex',
     flexDirection: 'column',
 
     padding: '3rem',
-    justifyContent: 'left',
+    justifyContent: 'flex-start',
 
     header: {
+      marginBottom: '2rem',
       h1: {
         fontSize: '1.25rem',
       },
     },
   },
 })
+
+export const ValueContainer = styled('section', {})

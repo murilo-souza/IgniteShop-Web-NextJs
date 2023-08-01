@@ -1,15 +1,17 @@
-import { Container } from '../styles/components/sidebar'
+import { Container, ValueContainer } from '../styles/components/sidebar'
 import { CartItem } from './CartItem'
 
 export function Sidebar() {
   return (
     <Container>
-      <div>
+      <main>
         <header>
           <h1>Sacola de compras</h1>
         </header>
         <CartItem />
-      </div>
+        <CartItem />
+        <ValueContainer></ValueContainer>
+      </main>
     </Container>
   )
 }
