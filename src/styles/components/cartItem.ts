@@ -2,12 +2,11 @@ import { styled } from '..'
 
 export const CartItemContainer = styled('div', {
   display: 'flex',
-  alignItems: 'center',
 
   marginBottom: '1.5rem',
   div: {
-    width: 101.94,
-    height: 93,
+    width: '6.375rem',
+    height: '5.8125rem',
 
     background: 'linear-gradient(180deg, #1EA483 0%, #7465D4 100%)',
     borderRadius: 8,
@@ -40,13 +39,30 @@ export const CartItemContainer = styled('div', {
       fontSize: '1.125rem',
       fontWeight: 'bold',
 
-      marginBottom: '0.5rem',
+      marginBottom: '1.25rem',
     },
-    span: {
+    button: {
+      width: '3rem',
+
       fontSize: '1.125rem',
       fontWeight: 'bold',
 
       color: '$green500',
+
+      border: 0,
+
+      background: 'none',
+
+      cursor: 'pointer',
+
+      '&:disabled': {
+        opacity: 0.6,
+        cursor: 'not-allowed',
+      },
+
+      '&:not(:disabled):hover': {
+        color: '$green300',
+      },
     },
   },
 })

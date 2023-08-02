@@ -1,17 +1,23 @@
 import { CartItemContainer } from '../styles/components/cartItem'
-import Shirt from '../assets/shirt-1.png'
 import Image from 'next/image'
 
-export function CartItem() {
+interface CartItemProps {
+  name: string
+  price: string
+  imageUrl: string
+  onClick: () => void
+}
+
+export function CartItem({ name, price, imageUrl, onClick }: CartItemProps) {
   return (
     <CartItemContainer>
       <div>
-        <Image src={Shirt} alt="shirt" width={100} height={90} />
+        <Image src={imageUrl} alt="shirt" width={100} height={93} />
       </div>
       <section>
-        <h2>Camiseta Beyond the Limits</h2>
-        <strong>R$ 62,90</strong>
-        <span>Remover</span>
+        <h2>{name}</h2>
+        <strong>R$ {price}</strong>
+        <button onClick={onClick}>Remover</button>
       </section>
     </CartItemContainer>
   )
