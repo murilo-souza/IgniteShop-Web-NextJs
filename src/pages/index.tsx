@@ -2,8 +2,7 @@ import Image from 'next/image'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 
-import { HomeContainer, Product } from '../styles/pages/home'
-import { useKeenSlider } from 'keen-slider/react'
+import { HomeContainer, Product, SliderContainer } from '../styles/pages/home'
 
 import 'keen-slider/keen-slider.min.css'
 import { stripe } from '../lib/stripe'
@@ -14,6 +13,7 @@ import { useCart } from '../hooks/useCart'
 import { IProduct } from '../context/CartContext'
 import { MouseEvent, useEffect, useState } from 'react'
 import { ProductsSkeleton } from '../components/ProductsSkeleton'
+import useEmblaCarousel from 'embla-carousel-react'
 
 interface HomeProps {
   products: IProduct[]
@@ -21,11 +21,17 @@ interface HomeProps {
 
 export default function Home({ products }: HomeProps) {
   const [isLoading, setIsLoading] = useState(true)
-  const [sliderRef] = useKeenSlider({
-    slides: {
-      perView: 2,
-      spacing: 48,
-    },
+
+  useEffect(() => {
+    const timeOut = setTimeout(() => setIsLoading(false), 2000)
+
+    return () => clearTimeout(timeOut)
+  }, [])
+
+  const [emblaRef] = useEmblaCarousel({
+    align: 'start',
+    skipSnaps: false,
+    dragFree: true,
   })
 
   const { addToCart, checkIfItemAlreadyExists } = useCart()
@@ -38,60 +44,61 @@ export default function Home({ products }: HomeProps) {
     addToCart(product)
   }
 
-  useEffect(() => {
-    const timeOut = setTimeout(() => setIsLoading(false), 2000)
-
-    return () => clearTimeout(timeOut)
-  }, [])
-
   return (
     <>
       <Head>
         <title>Home | Ignite Shop</title>
       </Head>
-      <HomeContainer ref={sliderRef} className="keen-slider">
-        {isLoading ? (
-          <>
-            <ProductsSkeleton className="keen-slider__slide" />
-            <ProductsSkeleton className="keen-slider__slide" />
-            <ProductsSkeleton className="keen-slider__slide" />
-            <ProductsSkeleton className="keen-slider__slide" />
-          </>
-        ) : (
-          <>
-            {products.map((product) => {
-              return (
-                <Link
-                  href={`/product/${product.id}`}
-                  key={product.id}
-                  prefetch={false}
-                >
-                  <Product className="keen-slider__slide">
-                    <Image
-                      src={product.imageUrl}
-                      width={520}
-                      height={480}
-                      alt=""
-                    />
-                    <footer>
-                      <div>
-                        <strong>{product.name}</strong>
-                        <span>{product.price}</span>
-                      </div>
-                      <button
-                        onClick={(e) => handleAddToCart(e, product)}
-                        disabled={checkIfItemAlreadyExists(product.id)}
+
+      <div style={{ overflow: 'hidden', width: '100%' }}>
+        <HomeContainer>
+          <div className="embla" ref={emblaRef}>
+            <SliderContainer className="embla__container container">
+              {isLoading ? (
+                <>
+                  <ProductsSkeleton className="embla__slide" />
+                  <ProductsSkeleton className="embla__slide" />
+                  <ProductsSkeleton className="embla__slide" />
+                  <ProductsSkeleton className="embla__slide" />
+                </>
+              ) : (
+                <>
+                  {products.map((product) => {
+                    return (
+                      <Link
+                        href={`/product/${product.id}`}
+                        key={product.id}
+                        prefetch={false}
                       >
-                        <Handbag size={32} weight="bold" />
-                      </button>
-                    </footer>
-                  </Product>
-                </Link>
-              )
-            })}
-          </>
-        )}
-      </HomeContainer>
+                        <Product className="embla__slide">
+                          <Image
+                            src={product.imageUrl}
+                            width={520}
+                            height={480}
+                            alt=""
+                          />
+                          <footer>
+                            <div>
+                              <strong>{product.name}</strong>
+                              <span>{product.price}</span>
+                            </div>
+                            <button
+                              onClick={(e) => handleAddToCart(e, product)}
+                              disabled={checkIfItemAlreadyExists(product.id)}
+                            >
+                              <Handbag size={32} weight="bold" />
+                            </button>
+                          </footer>
+                        </Product>
+                      </Link>
+                    )
+                  })}
+                </>
+              )}
+            </SliderContainer>
+          </div>
+        </HomeContainer>
+      </div>
     </>
   )
 }

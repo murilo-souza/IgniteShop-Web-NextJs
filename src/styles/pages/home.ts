@@ -1,15 +1,21 @@
 import { styled } from '..'
 
 export const HomeContainer = styled('main', {
-  display: 'flex',
   width: '100%',
   maxWidth: 'calc(100vw - ((100vw - 1180px)/2))',
   marginLeft: 'auto',
-  minHeight: 646,
-  marginBottom: 10,
 })
 
-export const Product = styled('div', {
+export const SliderContainer = styled('div', {
+  display: 'flex',
+  gap: '3rem',
+  margin: '0 auto',
+  '.embla__slide': {
+    minWidth: '43.5rem',
+  },
+})
+
+export const Product = styled('a', {
   background: 'linear-gradient(180deg, #1EA483 0%, #7465D4 100%)',
   borderRadius: 8,
   cursor: 'pointer',
